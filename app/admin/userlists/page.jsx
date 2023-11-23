@@ -8,7 +8,7 @@ import './userlists.css'
 import Pagination from './Pagination'
 import Userscollection from './Userscollection'
 
-const page = () => {
+const Page = () => {
   const users = useSelector((state) => state.userslice.usersdata);
 
   // const [user,setUsers]=useState(users) 
@@ -57,4 +57,4 @@ useEffect(()=>{
   )
 }
 
-export default page
+export default Page

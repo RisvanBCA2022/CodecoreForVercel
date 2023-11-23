@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import axiosInstance from '@/redux/axiosInstance';
 
 
-const page = () => {
+const Page = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const router=useRouter()
@@ -36,7 +36,7 @@ const page = () => {
     e.preventDefault()
     const questionTitle=e.target.askquestitle?.value
     const questionBody=e.target.askquesbody?.value
-    const questionTags=[...e.target.askquestags?.value.split(' ')]
+    const questionTags=e.target.askquestags?.value.split(' ')
     
     
   
@@ -105,4 +105,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

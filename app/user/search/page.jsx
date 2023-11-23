@@ -7,7 +7,7 @@ import { getQuestions } from '@/redux/axios'
 import Link from 'next/link'
 import moment from 'moment'
 
-const page = () => {
+const Page = () => {
     const searchParams = useSearchParams()
     const questionList = useSelector((state) => state.questionslice.allQuestions);
     const dispatch=useDispatch()
@@ -24,9 +24,9 @@ const page = () => {
             <LeftSideBar  />
             <div className="home-container-2">
             <h1>Question that related to {search}</h1>
-            {questionList.map((question)=>(
+            {questionList.map((question,i)=>(
                 question.questionTitle.toLowerCase().includes(search.toLowerCase())?
-                <div className="display-question-container">
+                <div className="display-question-container" key={i}>
       <div className="display-votes-ans">
         <p>{question.upVote.length - question.downVote.length}</p>
         <p>votes</p>
@@ -59,4 +59,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

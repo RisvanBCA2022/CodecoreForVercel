@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUser, getUser } from "@/redux/axios";
 import { useRouter } from "next/navigation";
 import Profile from "./profile";
-const page = () => {
+const Page = () => {
   const dispatch=useDispatch()
   // const [switchEdit,setSwitchEdit]=useState(false)
   const router=useRouter()
@@ -49,4 +49,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

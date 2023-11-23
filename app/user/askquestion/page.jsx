@@ -25,8 +25,8 @@ const handleSubmit = async(e)=>{
   e.preventDefault()
   const questionTitle=e.target.askquestitle?.value
   const questionBody=e.target.askquesbody?.value
-  const questionTags=[...e.target.askquestags?.value.split(' ')]
-  
+  const questionTags=e.target.askquestags?.value.split(' ')
+  console.log(questionTags);
   
 
   await axiosInstance.post('questions/ask/',{

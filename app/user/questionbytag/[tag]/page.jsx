@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const page = () => {
+const Page = () => {
     const {tag}=useParams()
     const [questionbytag,setQuestionbytag]=useState(null)
     const dispatch=useDispatch()
@@ -55,4 +55,4 @@ const page = () => {
 
 
 
-export default page
+export default Page

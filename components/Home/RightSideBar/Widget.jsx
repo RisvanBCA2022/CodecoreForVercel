@@ -58,7 +58,7 @@ const Widget = () => {
       </div>
       <div className="right-sidebar-div-2">
         <p>14</p>
-        <p>Is a link to the "How to ask" help page a useful comment?</p>
+        <p>Is a link to the How to ask help page a useful comment?</p>
       </div>
     </div>
   </div>

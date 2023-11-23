@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "@/redux/axiosInstance";
 // import './editprofile.css';
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const dispatch=useDispatch()
   const {id}=useParams()
@@ -186,4 +186,4 @@ const page = () => {
 };
 
 
-export default page;
+export default Page;
