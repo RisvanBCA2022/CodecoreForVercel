@@ -9,8 +9,8 @@ import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '@/redux/features/auth-slice';
 import { useRouter } from 'next/navigation';
-import { deleteCookie } from 'cookies-next';
-import { fetchAllUser, fetchuserbyid } from '@/redux/axios';
+import { deleteCookie, getCookie } from 'cookies-next';
+import { fetchAllUser, fetchuserbyid, userdata } from '@/redux/axios';
 import Avatars from '../Avatar/Avatar';
 import './Navbar.css';
 
@@ -19,35 +19,44 @@ const Navbar = () => {
   const [state, setState] = useState(true);
   const [user,setUser]=useState(null)
 
-    useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedUser = localStorage.getItem('user');
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    }
-  }, []);
+  const cookie=getCookie('jwt')
 
-  useEffect(() => {
-    if (state && user) {
-      dispatch(fetchuserbyid(user?.data?.ID));
-      setState(false);
-    }
-  }, [state, user, dispatch]);
+  //   useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const storedUser = localStorage.getItem('user');
+  //     if (storedUser) {
+  //       setUser(JSON.parse(storedUser));
+  //     }
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   if (state && user) {
+  //     dispatch(fetchuserbyid(user?.data?.ID));
+  //     setState(false);
+  //   }
+  // }, [state, user, dispatch]);
 
   useEffect(() => {
     dispatch(fetchAllUser());
+    if(cookie){
+      dispatch(userdata())
+
+    }
+
   }, [dispatch]);
 
-  const users = useSelector((state) => state.userslice.usersdata);
-  const currentUser=useSelector((state) => state.userslice.currentuserdata.data);
+  // const users = useSelector((state) => state.userslice.usersdata);
+  const usrs=useSelector((state) => state.userslice.user.data);
+  // console.log(usrs);
+  // const currentUser=useSelector((state) => state.userslice.currentuserdata.data);
   // console.log(userlal);
   // const currentUser = users.find((user) => user?._id == user?.data?.ID)
   // console.log(currentUser);
   const router = useRouter();
 
   const logout = () => {
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
     deleteCookie('jwt');
     router.push('/user/login');
   };
@@ -61,7 +70,7 @@ const Navbar = () => {
   return (
     <nav className="main-nav">
       <div className="navbar">
-        <Link href="/" className=" ">
+        <Link href="/">
           <Image src={Logo} alt="logo" height="60" />
         </Link>
         <IconButton
@@ -72,20 +81,25 @@ const Navbar = () => {
           sx={{ mr: 2 }}
           style={{ color: 'black' }}
         ></IconButton>
-        <Link href="/" className="nav-item nav-btn">
-          Products
+                <a className="nav-item nav-btn">
+
+        <Link href="/" style={{textDecoration:'none'}} >
+        Products
+
         </Link>
+        </a>
+
 
         <form action="" onSubmit={handlesubmit} className="form-container">
           <input type="text" placeholder="Search..." id="search" />
           <SearchIcon className="search-icon" />
         </form>
 
-        {user ? (
+        {usrs ? (
           <>
-            {currentUser?.profilepicture ? (
+            {usrs?.profilepicture ? (
               <Link href="/user/profile">
-                <Avatar alt="Remy Sharp" src={currentUser?.profilepicture} />
+                <Avatar alt="Remy Sharp" src={usrs?.profilepicture} />
               </Link>
             ) : (
               <Avatars
@@ -99,7 +113,7 @@ const Navbar = () => {
                   href="/user/profile"
                   style={{ color: 'white', textDecoration: 'none' }}
                 >
-                  {currentUser?.username.charAt(0).toUpperCase()}
+                  {usrs?.username.charAt(0).toUpperCase()}
                 </Link>
               </Avatars>
             )}

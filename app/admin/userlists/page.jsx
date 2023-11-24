@@ -20,7 +20,7 @@ const Page = () => {
     const dispatch=useDispatch()
 useEffect(()=>{
   dispatch(getUsersInAdmin())
-},[])
+},[dispatch])
 
     
     // console.log(users);

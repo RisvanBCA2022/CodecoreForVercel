@@ -58,7 +58,6 @@ const HandleSubmit= async (e)=>{
 		
 
 		if(response.data.status=="success"){
-			// dispatch(logIn(response.data))
 			toast.success('Successfully Registered')
 			router.push('/user/login')
 		}else{
@@ -77,33 +76,26 @@ const HandleSubmit= async (e)=>{
 			"email":email,
 			"password":password
 		})
-		console.log(response.data.data.blocked);
 	if(response.data.data.blocked === true){
 		toast.error('You Have Been BlockedBy Admin')
 		}else{
 		if(response.data.status=="success"){
-			dispatch(logIn(response.data))
 			setCookie('jwt',response.data.token)
 			
 			toast.success('Successfully login')
 
 			if(response.data.message=="admin"){
 				router.push('/admin/userlists')
-				localStorage.setItem('admin',JSON.stringify(response.data))
 				setCookie('jwt_admin',response.data.jwt_token)
-				console.log(response.data);
-				// toast.success('Admin Login Successfull')
+
 				
 
 			}else{
-				router.push('/')
 				toast.error(response.data.message)
-			localStorage.setItem('user',JSON.stringify(response.data))
-
+			router.push('/')
 			}
 			
 		}else{
-			// console.log(response.data);
 			toast.warning('password incorrect')
 			
 		}

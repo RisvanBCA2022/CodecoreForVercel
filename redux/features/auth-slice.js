@@ -17,7 +17,7 @@ export const auth = createSlice({
     initialState,
     reducers: {
         logOut: () => {
-            localStorage.removeItem("user");
+            // localStorage.removeItem("user");
             deleteCookie('jwt')
             return {
                 value: {
@@ -64,7 +64,7 @@ const slice = createSlice({
     },
     reducers: {
         logout:(state,action)=>{
-          localStorage.removeItem("user")
+        //   localStorage.removeItem("user")
         }
     },
   

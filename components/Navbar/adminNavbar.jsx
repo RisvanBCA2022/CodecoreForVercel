@@ -25,18 +25,12 @@ const AdminNavbar = () => {
 
   // useEffect(() => {
   //   dispatch(getUser())
-    const user=JSON.parse(localStorage.getItem('user'))
   //   if(userdata){
   //     setUser(JSON.parse(userdata))
   //   }
-  const admin=JSON.parse(localStorage.getItem('admin'))
-  console.log(admin);
 
 
-  // }, [dispatch]);
-  
-  const userdetails=useSelector(state => state.questionslice.userdetails)
-  // console.log(userdetails);
+
 
 
   const router=useRouter()
@@ -44,36 +38,25 @@ const AdminNavbar = () => {
   // console.log(auth);
   // const user=null
   //  console.log(user);
-  const token = getCookie('jwt')
+  const token = getCookie('jwt_admin')
 
  const logout=()=>{
   deleteCookie('jwt_admin') 
   router.push('/user/login')
  }
- if (typeof window !== 'undefined') {
-  const item = localStorage.getItem('user')
-}
+
   return (
    <nav className='main-nav'>
     <div className='navbar'>
       <Link href='/admin/userlists' className=' '>
-      <Image src={Logo} alt='logo' height='50'/>
+      <Image src={Logo} alt='logo' height='20px' width='20px'/>
       </Link>
       <Link href='/' className='nav-item nav-btn'>Users</Link>
       <Link href='/' className='nav-item nav-btn'>Question Management</Link>
       <Link href='/' className='nav-item nav-btn'>Answer Management</Link>
-      {/* <form action="">
-        <input type="text" placeholder='Search...' />
-        <Image src={search} alt="search" width='18' className='search-icon'/>
-        </form> */}
-        {/* {user?.auth==true?
-          <> <Avatar backgroundColor='#009dff' px="10px" py="7px" borderRadius="50%" color='white'><Link href='/user/profile' style={{color:'white',textDecoration:'none'}}>{user?.data?.username?.charAt(0).toUpperCase()}</Link></Avatar><button className='nav-item nav-links' onClick={logout}>Log out</button></>
-          : */}
-          {/* <Authprofilemenu /> */}
-
-        {/* } */}
-        {admin?.message=='admin'?
-        <> <Avatars backgroundColor='#009dff' px="10px" py="7px" borderRadius="50%" color='white'><Link href='/admin' style={{color:'white',textDecoration:'none'}}>{admin?.message?.charAt(0).toUpperCase()}</Link></Avatars><button className='nav-item nav-links' onClick={logout}>Log out</button></>:
+     
+        {token?
+        <> <Avatars backgroundColor='#009dff' px="10px" py="7px" borderRadius="50%" color='white'>{"admin".charAt(0).toUpperCase()}</Avatars><button className='nav-item nav-links' onClick={logout}>Log out</button></>:
         <Link href='/user/login' className='nav-item nav-links'>
       Log In
     </Link>

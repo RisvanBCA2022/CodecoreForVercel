@@ -17,9 +17,6 @@ const AskQuestion = () => {
   const dispatch=useDispatch()
   const router=useRouter()
 
-  const user=JSON.parse(localStorage.getItem('user'))
-  const userposted=user.data.username
-  // console.log(userposted);
 
 const handleSubmit = async(e)=>{
   e.preventDefault()

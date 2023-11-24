@@ -199,3 +199,15 @@ export const questionByUser=createAsyncThunk(
     }
     
 ) 
+export const userdata = createAsyncThunk(
+    'get/user',
+    async ()=>{
+        const token=getCookie('jwt')
+        const response = await axiosInstance.get('users/getuser',{
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+        })
+        return response
+    }
+)

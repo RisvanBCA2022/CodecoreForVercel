@@ -13,7 +13,7 @@ const Page = () => {
     const questionByTag=useSelector((state)=>state.userslice.questionByTag)
     useEffect(()=>{
         dispatch(fetchByTag(tag))
-    },[tag])
+    },[tag,dispatch])
 
 
   return (

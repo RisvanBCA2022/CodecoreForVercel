@@ -26,7 +26,7 @@ export default function DeleteProfile({userId}) {
   const handleClose = async(type) => {
     if(type){
         const res=await axios.post(`http://127.0.0.1:4001/users/deleteuser`,{userId})
-        localStorage.removeItem("user");
+        // localStorage.removeItem("user");
       deleteCookie('jwt')
       router.push('/user/login')
     }

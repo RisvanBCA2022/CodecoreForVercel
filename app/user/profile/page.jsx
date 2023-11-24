@@ -21,22 +21,9 @@ const Page = () => {
 
   useEffect(()=>{
     dispatch(fetchAllUser())
-  },[])
+  },[dispatch])
   
-  // const userdetails=JSON.parse(localStorage.getItem('user'))
-  // const users=useSelector((state)=>state.userslice.usersdata)
-  // const currentUser=users.find((user)=>user._id===userdetails.data.ID)
-  
-
-  // const handleEditprofile = ()=>{
-  //   setSwitchEdit(true)
-  //   router.push('/user/profile/editprofile')
-  // }
-
-  // const handleCancelEdit = () => {
-  //   setSwitchEdit(false);
-  // };
-  // // console.log(currentUser);
+ 
 
   return (
     <div className="home-container-1">

@@ -1,4 +1,5 @@
 import { blockUser, fetchAllUser } from '@/redux/axios'
+import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -10,7 +11,7 @@ const Userscollection = ({currentuser}) => {
 
     useEffect(()=>{
         dispatch(fetchAllUser())
-      },[])
+      },[dispatch])
 
 
     const block=(id)=>{
@@ -51,7 +52,7 @@ const Userscollection = ({currentuser}) => {
               <tr className="candidates-list" key={user._id}>
                 <td className="title">
                   <div className="thumb">
-                    <img className="img-fluid" src={user?.profilepicture?user.profilepicture:"https://bootdey.com/img/Content/avatar/avatar7.png"} alt=""/>
+                    <img className="img-fluid" src={user?.profilepicture?user.profilepicture:"https://bootdey.com/img/Content/avatar/avatar7.png"} alt="" width='50' height='50'/>
                   </div>
                   <div className="candidate-list-details">
                     <div className="candidate-list-info">

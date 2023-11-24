@@ -11,7 +11,7 @@ import Link from 'next/link';
 import Avatar from '@/components/Avatar/Avatar';
 import DisplayAnswer from './DiplayAnswers';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllUser, getQuestions, getUser, getanswers, postAnswer, vote } from '@/redux/axios';
+import { fetchAllUser, getQuestions, getUser, getanswers, postAnswer, userdata, vote } from '@/redux/axios';
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
 import copy from 'copy-to-clipboard';
@@ -26,38 +26,39 @@ const QuestionDetails = () => {
 
   const { id } = useParams()
   const router = useRouter()
-  // const user=JSON.parse(localStorage.getItem('user'))
   const dispatch = useDispatch()
+  const cookie=getCookie('jwt')
 
   useEffect(() => {
     dispatch(getQuestions())
     dispatch(getanswers())
     dispatch(getUser())
-    dispatch(fetchAllUser())    
+    dispatch(fetchAllUser())  
+    if(cookie){
+      dispatch(userdata())
+    }  
   }, [dispatch])
 
-  const user = JSON.parse(localStorage.getItem("user"))
-  // console.log(user);
+  // const user = JSON.parse(localStorage.getItem("user"))
 
   const questionList = useSelector((state) => state?.questionslice.allQuestions)
   const allAnswers = useSelector((state) => state.questionslice.allAnswers)
-  const userdetails = useSelector((state) => state.questionslice.userdetails)
   const users = useSelector((state) => state.userslice.usersdata);
+  const usr=useSelector((state)=>state.userslice.user.data)
+  console.log(usr);
 
 
-  // console.log(allAnswers)
   const auth = useSelector((state) => state?.authReducer.value)
   const token = getCookie('jwt')
   const add = async(e, noOfAnswers, questionId) => {
-    // console.log(questionId);
     e.preventDefault()
-  if(!user){
+  if(!usr){
     toast.warning('Please Login')
     router.push('/user/login/#success')
   }else{
     const answerBody = e.target.useranswer.value
-    const userId = userdetails._id
-    const userAnswered = user.data.username
+    const userId = usr?._id
+    const userAnswered = usr?.username
     if (answerBody == '') {
       alert('Enter an answer before submitting')
     } else {
@@ -77,7 +78,7 @@ const QuestionDetails = () => {
   const questionpostedUser=users.filter((user)=>user._id==filtered[0]?.userId)
 
   const handleshare = () => {
-    const userId = user.data.ID
+    // const userId = user.data.ID
 
 
     copy(url)
@@ -93,11 +94,11 @@ const QuestionDetails = () => {
   }
 
   const upvotehandler = async (e, questionId) => {
-    if(!user){
+    if(!usr){
       toast.warning('Please Login')
       router.push('/user/login/#success')
     }else{
-      await dispatch(vote({ questionId: questionId, userId: user.data.ID, voteType: 'upvote' }))
+      await dispatch(vote({ questionId: questionId, userId: usr?._id, voteType: 'upvote' }))
       await dispatch(getQuestions())
     }
   
@@ -105,11 +106,11 @@ const QuestionDetails = () => {
   }
 
   const downvotehandler = async (e, questionId) => {
-    if(!user){
+    if(!usr){
       toast.warning('Please Login')
       router.push('/user/login/#success')
     }else{
-      await dispatch(vote({ questionId: questionId, userId: user.data.ID, voteType: 'downvote' }))
+      await dispatch(vote({ questionId: questionId, userId: usr?._id, voteType: 'downvote' }))
     await dispatch(getQuestions())
     
     }
@@ -117,7 +118,7 @@ const QuestionDetails = () => {
   
   }
   const handleEdit=(e,questionId)=>{
-    if(!user){
+    if(!usr){
       toast.warning('Please Login')
       router.push('/user/login/#success')
     }else{
@@ -175,7 +176,7 @@ const QuestionDetails = () => {
                           <button type="button" onClick={(e) => handleEdit(e, question._id) }>
                             Edit
                           </button>
-                          {question?.userId===userdetails._id ? (
+                          {question?.userId===usr?._id ? (
                             <button type="button" onClick={() => deleteQuestionhandler(question._id,question.userId)}>
                               Delete
                             </button>

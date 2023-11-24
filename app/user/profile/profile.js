@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBirthdayCake,faPen } from "@fortawesome/free-solid-svg-icons";
 import moment from 'moment';
-import { fetchAllUser, getQuestionById, getanswers, questionByUser } from '@/redux/axios';
+import { fetchAllUser, getQuestionById, getanswers, questionByUser, userdata } from '@/redux/axios';
 import Avatars from '@/components/Avatar/Avatar';
 import { Avatar } from '@mui/material';
 import DeleteProfile from './DeleteProfile';
 import Link from 'next/link';
 import Badge from './Badge';
+import { getCookie } from 'cookies-next';
 
 
 
@@ -21,28 +22,30 @@ const Profile = () => {
   const router=useRouter()
 
 
-  
-  
-  const userdetails=JSON.parse(localStorage.getItem('user'))
-  const users=useSelector((state)=>state.userslice.usersdata)
-  const currentUser=users.find((user)=>user._id===userdetails.data.ID)
+  const usr=useSelector((state)=>state.userslice.user.data)
+  console.log(usr);
   const userquestions=useSelector((state)=>state.userslice.questionsByuser?.questions)
   const allAnswers = useSelector((state) => state.questionslice.allAnswers)
-  const useranswered=allAnswers.filter((answer)=>answer.userId==currentUser?._id)
+  const useranswered=allAnswers.filter((answer)=>answer.userId==usr?._id)
 
- const id=currentUser?._id
-//  console.log(currentUser);
+ const id=usr?._id
+ const cookie=getCookie('jwt')
+ 
   useEffect(()=>{
     if(id){
     dispatch(questionByUser(id))
     dispatch(fetchAllUser())
-    dispatch(getanswers)
+    // dispatch(getanswers)
+    if(cookie){
+      dispatch(userdata())
+
     }
-  },[dispatch,id])
+    }
+  },[dispatch])
 
   const handleEditprofile = ()=>{
     setSwitchEdit(true)
-    router.push(`/user/editprofile/${currentUser._id}`)
+    router.push(`/user/editprofile/${usr._id}`)
   }
   const handleCancelEdit = () => {
     setSwitchEdit(false);
@@ -51,8 +54,8 @@ const Profile = () => {
     <div>
     <div className="user-details-container">
       <div className="user-details">
-        {currentUser?.profilepicture ? (
-          <Avatar alt="User Avatar" src={currentUser?.profilepicture} style={{ width: "125px", height: "125px" }} variant="rounded" />
+        {usr?.profilepicture ? (
+          <Avatar alt="User Avatar" src={usr?.profilepicture} style={{ width: "125px", height: "125px" }} variant="rounded" />
         ) : (
           <Avatars
             backgroundColor="purple"
@@ -61,15 +64,15 @@ const Profile = () => {
             px="40px"
             py="30px"
           >
-            {currentUser?.username?.charAt(0).toUpperCase()}
+            {usr?.username?.charAt(0).toUpperCase()}
           </Avatars>
         )}
 
         <div className="user-name">
-          <h1>{currentUser?.username}</h1>
+          <h1>{usr?.username}</h1>
           <p>
             <FontAwesomeIcon icon={faBirthdayCake} /> Joined{" "}
-            {moment(currentUser?.joinedOn).format("MMM Do YY")}
+            {moment(usr?.joinedOn).format("MMM Do YY")}
           </p>
         </div>
 
@@ -79,10 +82,10 @@ const Profile = () => {
         {/* <button style={{ backgroundColor: 'red',gap:'10px' }}>
             Delete Profile
           </button> */}
-          <DeleteProfile userId={currentUser?._id} />
+          <DeleteProfile userId={usr?._id} />
       </div>
     </div>
-   <Badge badgeType={currentUser?.badge} />
+   <Badge badgeType={usr?.badge} />
     <br />
     <div>
       <h2>Status</h2>
@@ -96,9 +99,9 @@ const Profile = () => {
         </thead>
         <tbody>
           <tr>
-            <td>{currentUser?.reputation}</td>
+            <td>{usr?.reputation}</td>
             <td>{useranswered?.length}</td>
-            <td>{currentUser?.questions.length}</td>
+            <td>{usr?.questions.length}</td>
           </tr>
         </tbody>
       </table>

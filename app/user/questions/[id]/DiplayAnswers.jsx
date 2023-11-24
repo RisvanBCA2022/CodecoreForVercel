@@ -2,26 +2,28 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import Avatar from '@/components/Avatar/Avatar'
 import moment from 'moment'
-import { deleteanswer, getQuestions, getanswers } from '@/redux/axios'
+import { deleteanswer, getQuestions, getanswers, userdata } from '@/redux/axios'
 import { useDispatch, useSelector } from 'react-redux'
+import { getCookie } from 'cookies-next'
 
 const DisplayAnswer = ({filteredAnswer}) => {
     const dispatch=useDispatch()
+    const cookie=getCookie('jwt')
     const userdetails=useSelector(state => state.questionslice.userdetails)
 
-    const user=JSON.parse(localStorage.getItem('user'))
-
-    // console.log(filteredAnswer);
-    
-    useEffect(()=>{
+    const user1=useSelector((state)=>state.userslice.user.data)
+        useEffect(()=>{
         dispatch(getQuestions())
         dispatch(getanswers())
+        if(cookie){
+            dispatch(userdata())
+        }
       },[dispatch])
 
       const deleteAnswer=(answerId,userId)=>{
         // console.log(answerId,question._id);
         // console.log(userId);
-        const currentuserId=user.data.ID
+        const currentuserId=user1._id
         const Id=answerId
         const questionId=filteredAnswer[0].questionId
         const data={userId,Id,questionId}

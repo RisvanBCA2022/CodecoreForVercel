@@ -8,7 +8,7 @@ const UsersList = () => {
     const dispatch=useDispatch()
     useEffect(()=>{
         dispatch(fetchAllUser())
-    },[])
+    },[dispatch])
   const users = useSelector((state) => state.userslice.usersdata);
 
 

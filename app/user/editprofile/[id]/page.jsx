@@ -18,7 +18,7 @@ import { useParams, useRouter } from 'next/navigation'
 import LeftSideBar from '@/components/Home/LeftsideBar/LeftSideBar';
 import { toast } from "react-toastify";
 import upload from "@/components/upload_profile";
-import { fetchAllUser } from "@/redux/axios";
+import { fetchAllUser, userdata } from "@/redux/axios";
 import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "@/redux/axiosInstance";
 // import './editprofile.css';
@@ -27,20 +27,17 @@ const Page = () => {
   const router = useRouter();
   const dispatch=useDispatch()
   const {id}=useParams()
+  const cookie=getCookies('jwt')
+
   const navigateToProfile = () => {
     router.push('/user/profile');
   }
   const [data,setData]=useState()
   useEffect(()=>{
-    dispatch(fetchAllUser())
-  },[])
+    dispatch(userdata())
+  },[dispatch])
 
-  const cookie=getCookies('jwt')
-  console.log(cookie);
-  const userdetails=JSON.parse(localStorage.getItem('user'))
-  const users=useSelector((state)=>state.userslice.usersdata)
-  const currentUser=users.find((user)=>user._id===userdetails.data.ID)
-
+  const usr=useSelector((state)=>state.userslice.user.data)
   const handleSubmit = async(e) => {
     e.preventDefault();
     const profilepicture= await upload(data)
@@ -86,7 +83,7 @@ const Page = () => {
             {/* {profile?.map((data) => ( */}
               <form onSubmit={handleSubmit}>
                 <Avatar
-                  src={currentUser?.profilepicture} // Display user's avatar
+                  src={usr?.profilepicture} // Display user's avatar
                   alt="Profile Picture"
                   sx={{
                     width: 100,

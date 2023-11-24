@@ -16,18 +16,15 @@ import { useRouter } from 'next/navigation'
 // }
 
 export default function RootLayout({children,}) {
-  const cookie=getCookie('jwt_admin')
-  const router=useRouter()
 
   return (
-    <body>
-          {cookie  ? null : router.push('/user/login')}
+    <>
     <ReduxProvider>
     
     <AdminNavbar />
           <main className="my-0 py-16">{children}</main>
           </ReduxProvider>
-          </body>
+          </>
           
           
     

@@ -15,16 +15,16 @@ const upload = async (file) => {
     });
     
     if (res.status === 200) {
-      console.log("Upload successful:", res.data.url);
+      // console.log("Upload successful:", res.data.url);
       return res.data.url;
     } else {
-      console.error("Upload failed. Response:", res);
+      // console.error("Upload failed. Response:", res);
       throw new Error("Upload failed");
     }
   } catch (error) {
-    console.error("Error uploading file:", error);
+    // console.error("Error uploading file:", error);
     if (error.response) {
-      console.error("Response data:", error.response.data);
+      // console.error("Response data:", error.response.data);
     }
     throw error;
   }

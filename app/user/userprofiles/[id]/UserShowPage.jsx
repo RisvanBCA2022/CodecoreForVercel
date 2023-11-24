@@ -1,5 +1,6 @@
 import React from 'react'
 import './usershowpage.css'
+import Image from 'next/image'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -11,7 +12,7 @@ const UserShowPage = ({user}) => {
         <div className="col-md-7">
           <div className="card">
             <div className="avatar">
-              <img src={user?.data?.profilepicture?user.data.profilepicture:"https://i.imgur.com/bDLhJiP.jpg"} width="100" className="rounded-circle" alt="User Avatar" />
+              <Image src={user?.data?.profilepicture?user.data.profilepicture:"https://i.imgur.com/bDLhJiP.jpg"} width="100" className="rounded-circle" alt="User Avatar" />
             </div>
             <div className="user-details mt-3 text-center">
               <span className="badge">Pro</span>

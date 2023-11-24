@@ -18,7 +18,7 @@ const Page = () => {
 
   useEffect(() => {
     dispatch(getQuestionById(id));
-  }, [id]);
+  }, [id,dispatch]);
 
   const question = useSelector((state) => state?.userslice.currentQuestion?.data);
 

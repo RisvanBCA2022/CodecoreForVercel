@@ -5,23 +5,21 @@ import { useRouter } from 'next/navigation';
 import './HomeMainBar.css'
 import QuestionList from './QuestionList';
 import { useDispatch, useSelector } from 'react-redux';
-import { getQuestions, getUser, getanswers } from '@/redux/axios';
+import { getQuestions, getUser, getanswers, userdata } from '@/redux/axios';
 import { usePathname } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { getCookie } from 'cookies-next';
 // ... other imports
 
 const HomeMainBar = () => {
-  const user=JSON.parse(localStorage.getItem('user'))
+  const cookie=getCookie('jwt')
   const router = useRouter();
   const pathname = usePathname();
   const dispatch = useDispatch();
   const questionList = useSelector((state) => state.questionslice.allQuestions);
-  const status = useSelector((state) => state.questionslice.status);
-
-  console.log(questionList);
-
+  const usr=useSelector((state)=>state.userslice.user.data)
   const checkAuth = () => {
-      if (user === null) {
+      if (!usr) {
         toast.warning('please signup or login to continue')
           router.push('/user/login');
       } else {
@@ -33,6 +31,9 @@ const HomeMainBar = () => {
       dispatch(getQuestions());
       dispatch(getanswers());
       dispatch(getUser());
+      if(cookie){
+        dispatch(userdata())
+      }
   }, [dispatch]);
 
   return (
