@@ -1,5 +1,5 @@
 // import './globals.css'
-'use client'
+
 import { Home } from '@/components'
 import AdminNavbar from '@/components/Navbar/adminNavbar'
 import { ReduxProvider } from '@/redux/Provider'
@@ -22,6 +22,7 @@ export default function RootLayout({children,}) {
     <ReduxProvider>
     
     <AdminNavbar />
+   
           <main className="my-0 py-16">{children}</main>
           </ReduxProvider>
           </>

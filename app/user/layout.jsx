@@ -16,11 +16,13 @@ export const metadata = {
 export default function RootLayout({children,}) {
   return (
   
-    <>
+    <html>
+      <body>
       <Navbar />
       {/* <Demo /> */}
-          <main className="my-0 py-16">{children}</main>     
-          </>
+         {children}
+          </body>     
+          </html>
           
           
    

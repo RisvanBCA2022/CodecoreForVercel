@@ -16,7 +16,7 @@ import Profile from "./profile";
 const Page = () => {
   const dispatch=useDispatch()
   // const [switchEdit,setSwitchEdit]=useState(false)
-  const router=useRouter()
+
 
 
   useEffect(()=>{

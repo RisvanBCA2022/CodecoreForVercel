@@ -20,7 +20,7 @@ const Page = () => {
     const dispatch=useDispatch()
 useEffect(()=>{
   dispatch(getUsersInAdmin())
-},[dispatch])
+},[dispatch,users])
 
     
     // console.log(users);
@@ -34,11 +34,11 @@ useEffect(()=>{
     const paginate=pageNumber =>setCurrentPage(pageNumber)
 
   return (
-    <div>
-     <div className='home-container-1'>
+    <div style={{marginTop:'100px'}}>
+     <div className='home-container-1' style={{display:'flex',marginTop:'50px'}}>
     <AdminLeftbar />
 
-    <div className="main-bar">
+    <div className="main-bar" >
     <h1>All Users</h1>
 
       <div className="main-bar-header">

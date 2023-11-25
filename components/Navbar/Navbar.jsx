@@ -117,7 +117,7 @@ const Navbar = () => {
                 </Link>
               </Avatars>
             )}
-            <button className="nav-item nav-links" onClick={logout}>
+            <button className="nav-item nav-links" onClick={()=>logout()}>
               Log out
             </button>
           </>

@@ -41,7 +41,7 @@ const Profile = () => {
 
     }
     }
-  },[dispatch])
+  },[dispatch,switchEdit])
 
   const handleEditprofile = ()=>{
     setSwitchEdit(true)

@@ -48,7 +48,7 @@ const AdminNavbar = () => {
   return (
    <nav className='main-nav'>
     <div className='navbar'>
-      <Link href='/admin/userlists' className=' '>
+      <Link href='/admin/userlists' >
       <Image src={Logo} alt='logo' height='20px' width='20px'/>
       </Link>
       <Link href='/' className='nav-item nav-btn'>Users</Link>

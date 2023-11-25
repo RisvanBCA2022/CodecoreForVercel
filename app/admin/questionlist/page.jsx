@@ -20,7 +20,7 @@ const AdminQuestionList = () => {
   return (
     <div>
 
-     <div className='home-container-1'>
+     <div className='home-container-1' style={{display:'flex',marginTop:'100px'}}>
     <AdminLeftbar />
     <div className="main-bar">
       <div className="main-bar-header">

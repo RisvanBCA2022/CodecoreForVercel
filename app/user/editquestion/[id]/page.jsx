@@ -18,7 +18,7 @@ const Page = () => {
 
   useEffect(() => {
     dispatch(getQuestionById(id));
-  }, [id,dispatch]);
+  }, [dispatch]);
 
   const question = useSelector((state) => state?.userslice.currentQuestion?.data);
 
@@ -26,7 +26,7 @@ const Page = () => {
   const [questionBody, setQuestionBody] = React.useState(question?.questionBody || '');
   const [questionTags, setQuestionTags] = React.useState(question?.questionTags || '');
 
-  React.useEffect(() => {
+  useEffect(() => {
     setQuestionTitle(question?.questionTitle || '');
     setQuestionBody(question?.questionBody || '');
     setQuestionTags(question?.questionTags || '');
