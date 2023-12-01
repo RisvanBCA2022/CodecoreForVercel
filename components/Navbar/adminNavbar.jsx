@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { getCookie, deleteCookie } from 'cookies-next';
 import Avatars from '../Avatar/Avatar';
-import styles from './adminNav.module.css';
+import styles from './adminnav.module.css';
+//fixed errors
 import Logo from '../../public/Logo.png'
 import admin from '../../public/admin.jpg'
 import { Avatar } from '@mui/material';
