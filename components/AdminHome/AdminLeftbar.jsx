@@ -11,7 +11,7 @@ const AdminLeftbar = () => {
   return (
     <div className='left-sidebar'>
       <nav className='side-nav'>
-        <Link href='/admin' className={currentRoute === '/'?'active side-nav-links':'side-nav-links'}>
+        <Link href='/admin/userlists' className={currentRoute === '/'?'active side-nav-links':'side-nav-links'}>
           <p>Home</p>
         </Link>
         <div className='side-nav-div'>     

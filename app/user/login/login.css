@@ -1,10 +1,12 @@
 .auth-section{
     min-width: 100vh;
-    margin: 0% auto;
+    /* margin: 0% auto; */
     background-color: #f1f2f3;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin-top: 50px; */
+    height:100vh;
 }
 .auth-container-1{
     padding: 20px;

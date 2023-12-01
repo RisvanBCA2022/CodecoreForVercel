@@ -58,7 +58,7 @@ const Userscollection = ({currentuser}) => {
                     <div className="candidate-list-info">
                       <div className="candidate-list-title">
                       
-                        <h5 className="mb-0"><Link href={`/user/userprofiles/${user?._id}`} >{user.username}</Link></h5>
+                        <h5 className="mb-0"><Link href={`/admin/userdetails/${user?._id}`} >{user.username}</Link></h5>
                       </div>
                       <div className="candidate-list-option">
                        

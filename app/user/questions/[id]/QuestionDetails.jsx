@@ -189,8 +189,7 @@ const QuestionDetails = () => {
                         </div>
                         <div>
                           <p>asked {moment(question.askedOn).fromNow()}</p>
-                          <Link
-                            href={`/user/userprofiles/${question.userId}`}
+                          <p
                             className="user-link"
                             style={{ color: "#0086d8" }}
                             onClick={() => { dispatch(getanswers()) }}
@@ -204,7 +203,7 @@ const QuestionDetails = () => {
                               {auth.currenUser?.username.charAt(0).toUpperCase()}
                             </Avatar>
                             <div>{questionpostedUser[0]?.username}</div>
-                          </Link>
+                          </p>
                         </div>
                       </div>
                     </div>

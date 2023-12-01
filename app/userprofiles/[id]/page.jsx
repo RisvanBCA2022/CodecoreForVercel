@@ -4,7 +4,7 @@ import { fetchuserbyid } from '@/redux/axios'
 import { useParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import UserShowPage from './UserShowPage'
+import UserShowPage from './UserShowpage'
 
 const Userprofiles = () => {
     const { id } = useParams()
@@ -17,15 +17,15 @@ const Userprofiles = () => {
 
    
 
-    const user = useSelector((state) => state.userslice.currentuserdata)
+    const user = useSelector((state) => state.userslice.currentuserdata.data)
     
     return (
-        <div className="home-container-1">
-            <LeftSideBar  />
-            <h1 style={{ fontWeight: "400" }}>User Details</h1>
-            <div className="home-container-2" style={{ marginTop: "100px" }}>
+        <div >
+            {/* <LeftSideBar  /> */}
+            {/* <h1 style={{ fontWeight: "400" }}>User Details</h1> */}
+            {/* <div className="home-container-2" style={{ marginTop: "100px" }}> */}
                 <UserShowPage user={user} />
-            </div>
+            {/* </div> */}
         </div>
     )
 }

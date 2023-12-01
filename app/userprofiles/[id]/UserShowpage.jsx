@@ -5,18 +5,23 @@ import Image from 'next/image'
 
 
 const UserShowPage = ({user}) => {
+  console.log(user);
+  if (!user) {
+    return <p>Loading...</p>; // or any other fallback UI
+  }
+
   return (
     <>
-         <div className="container mt-5">
+         {/* <div className="container mt-5">
       <div className="row d-flex justify-content-center">
         <div className="col-md-7">
           <div className="card">
             <div className="avatar">
-              <Image src={user?.data?.profilepicture?user.data.profilepicture:"https://i.imgur.com/bDLhJiP.jpg"} width="100" className="rounded-circle" alt="User Avatar" />
+              <Image src={user?.profilepicture?user?.profilepicture:"https://i.imgur.com/bDLhJiP.jpg"} width="100" className="rounded-circle" alt="User Avatar" />
             </div>
             <div className="user-details mt-3 text-center">
               <span className="badge">Pro</span>
-              <h5 className="username">{user?.data?.username}</h5>
+              <h5 className="username">{user?.username}</h5>
               <span>Web Developer</span>
               <div className="bio mt-1">
                 <p>{user?.bio}</p>
@@ -36,7 +41,7 @@ const UserShowPage = ({user}) => {
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
     </>
   )
 }

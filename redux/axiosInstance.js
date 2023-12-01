@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://codecoresite.onrender.com',
+  baseURL: 'https://codecore.rzspyboy.me/',
   headers: {
     'Content-Type': 'application/json',
   },

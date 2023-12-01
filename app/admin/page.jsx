@@ -15,7 +15,7 @@ const page = () => {
     
     <main className='overflow-hidden'>
     <div className='home-container-1'>
-    <AdminLeftbar />
+    {/* <AdminLeftbar /> */}
     </div>
   
     

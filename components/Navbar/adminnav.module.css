@@ -1,0 +1,75 @@
+/* AdminNavbar.module.css */
+
+.main-nav {
+  min-height: 50px;
+  width: 100%;
+  margin: 0% auto;
+  border-top: solid 3px #47b614;
+  box-shadow: 0px 1px 5px #00000033;
+  position: fixed;
+  z-index: 5;
+  top: 0%;
+  left: 0%;
+  background-color: #f8f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  height: 40px;
+  min-width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.nav-item {
+  margin: 0px 3px;
+  font-size: small;
+  font-weight: 500;
+  text-decoration: none;
+  color: rgb(69, 69, 69);
+  transition: 0.2s;
+}
+
+.nav-btn {
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.nav-item:hover {
+  background-color: rgb(228, 218, 218);
+}
+
+.nav-links {
+  padding: 7px 13px;
+  border: solid 1px blue;
+  border-radius: 3px;
+  background-color: #e7f8fe;
+  cursor: pointer;
+}
+
+.nav-links:hover {
+  background-color: #d3e4eb;
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-container button {
+  margin-left: 10px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+  object-fit: cover; /* Adjust the object-fit property as needed */
+}

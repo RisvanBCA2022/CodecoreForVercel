@@ -1,42 +1,55 @@
-// AdminQuestionList.js
-import { getQuestions } from '@/redux/axios';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Paper, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 
-const AdminQuestionlist = ({questionList}) => {
+const Container = styled(Paper)(({ theme }) => ({
+  maxWidth: '800px',
+  margin: '0 auto',
+  padding: theme.spacing(3),
+   // Similar to main-bar background color
+  border: 'solid 1px #edeff0', // Similar to main-bar border color
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Similar to main-bar box shadow
+  borderRadius: theme.shape.borderRadius,
+}));
 
+const QuestionList = styled('ul')(({ theme }) => ({
+  listStyleType: 'none',
+  padding: 0,
+  background: '#eefde2',
+}));
 
-    return (
-        <div style={styles.container}>
-          <h2>Question List</h2>
-          <ul style={styles.questionList}>
-            {questionList.map((question) => (
-              <li key={question._id} style={styles.questionItem}>
-                <h3>{question.questionTitle}</h3>
-                <p>{question.questionBody}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    };
-    
-    const styles = {
-      container: {
-        maxWidth: '800px',
-        margin: '0 auto',
-        padding: '20px',
-      },
-      questionList: {
-        listStyleType: 'none',
-        padding: 0,
-      },
-      questionItem: {
-        marginBottom: '20px',
-        border: '1px solid #e5e5e5',
-        padding: '20px',
-      },
-    };
+const QuestionItem = styled('li')(({ theme }) => ({
+  marginBottom: theme.spacing(4), // Increased margin at the bottom
+  padding: theme.spacing(3),
+  border: `1px solid ${theme.palette.divider}`, // You can adjust this to match your design
+  borderRadius: theme.shape.borderRadius,
+  transition: 'background-color 0.3s',
 
+  '&:hover': {
+    backgroundColor: '#edeff0', // Similar to main-bar hover color
+  },
+}));
+
+const AdminQuestionlist = ({ questionList }) => {
+  return (
+    <Container>
+      <Typography variant="h4" gutterBottom style={{ color: '#037ecb' }}>
+        Question List
+      </Typography>
+      <QuestionList>
+        {questionList.map((question) => (
+          <QuestionItem key={question._id}>
+            <Typography variant="h5" gutterBottom style={{ color: '#037ecb' }}>
+              {question.questionTitle}
+            </Typography>
+            <Typography variant="body1" style={{ color: '#39739d' }}>
+              {question.questionBody}
+            </Typography>
+          </QuestionItem>
+        ))}
+      </QuestionList>
+    </Container>
+  );
+};
 
 export default AdminQuestionlist;

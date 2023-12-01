@@ -1,0 +1,81 @@
+/* UserDetailPage.css
+
+.card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar {
+    text-align: center;
+  }
+  
+  .user-details {
+    text-align: center;
+  }
+  
+  .badge {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .username {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  
+  .bio {
+    font-size: 0.9rem;
+  }
+  
+  .social-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .social-list li {
+    font-size: 1.5rem;
+    color: #212529;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .message-btn {
+    color: #007bff;
+    border: 2px solid #007bff;
+    background-color: #fff;
+  }
+  
+  .message-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .contact-btn {
+    background-color: #007bff;
+    color: #fff;
+    margin-left: 10px;
+  }
+  
+  .contact-btn:hover {
+    background-color: #0056b3;
+  }
+   */

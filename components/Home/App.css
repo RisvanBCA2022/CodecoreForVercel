@@ -15,6 +15,9 @@
     flex: 1;
 
 }
+nextjs-portal {
+  display: none;
+}
 
   @media (max-width: 767px) {
     .home-container-1 {
@@ -22,7 +25,7 @@
     }
   
     .home-container-2 {
-      display: none; /* Hide the RightSideBar on smaller screens */
+      display: none; 
     }
   }
   

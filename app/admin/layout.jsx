@@ -22,8 +22,10 @@ export default function RootLayout({children,}) {
     <ReduxProvider>
     
     <AdminNavbar />
-   
+    <div className='home-container-1' style={{ display: 'flex', marginTop: '50px', justifyContent: 'center' }}>
+    <AdminLeftbar />
           <main className="my-0 py-16">{children}</main>
+          </div>
           </ReduxProvider>
           </>
           

@@ -1,16 +1,10 @@
-/* UserDetailPage.css */
+/* UserDetailPage.css
 
-.card {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+
   
-  .avatar {
-    text-align: center;
-  }
+
   
-  .user-details {
+  /* .user-details {
     text-align: center;
   }
   
@@ -19,8 +13,19 @@
     color: #fff;
     padding: 5px 10px;
     border-radius: 5px;
+  } */
+ 
+  .card {
+    width: 100vh;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
   }
-  
   .username {
     margin-top: 10px;
     margin-bottom: 0;
@@ -78,4 +83,8 @@
   .contact-btn:hover {
     background-color: #0056b3;
   }
-  
+  .avatar{
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+  }

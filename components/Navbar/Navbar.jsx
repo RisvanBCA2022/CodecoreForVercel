@@ -1,7 +1,8 @@
 'use client'
-import Logo from '../../public/Logo.png'
-import Image from 'next/image'
+// Navbar.js
+
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,51 +13,27 @@ import { useRouter } from 'next/navigation';
 import { deleteCookie, getCookie } from 'cookies-next';
 import { fetchAllUser, fetchuserbyid, userdata } from '@/redux/axios';
 import Avatars from '../Avatar/Avatar';
-import './Navbar.css';
+import styles from './Navbar.module.css'; // Import the styles
+import Logo from '../../public/Logo.png'
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const [state, setState] = useState(true);
-  const [user,setUser]=useState(null)
+  const [user, setUser] = useState(null);
 
-  const cookie=getCookie('jwt')
-
-  //   useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const storedUser = localStorage.getItem('user');
-  //     if (storedUser) {
-  //       setUser(JSON.parse(storedUser));
-  //     }
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (state && user) {
-  //     dispatch(fetchuserbyid(user?.data?.ID));
-  //     setState(false);
-  //   }
-  // }, [state, user, dispatch]);
+  const cookie = getCookie('jwt');
 
   useEffect(() => {
     dispatch(fetchAllUser());
-    if(cookie){
-      dispatch(userdata())
-
+    if (cookie) {
+      dispatch(userdata());
     }
-
   }, [dispatch]);
 
-  // const users = useSelector((state) => state.userslice.usersdata);
-  const usrs=useSelector((state) => state.userslice.user.data);
-  // console.log(usrs);
-  // const currentUser=useSelector((state) => state.userslice.currentuserdata.data);
-  // console.log(userlal);
-  // const currentUser = users.find((user) => user?._id == user?.data?.ID)
-  // console.log(currentUser);
+  const usrs = useSelector((state) => state.userslice.user.data);
   const router = useRouter();
 
   const logout = () => {
-    // localStorage.removeItem('user');
     deleteCookie('jwt');
     router.push('/user/login');
   };
@@ -68,8 +45,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="main-nav">
-      <div className="navbar">
+    <nav className={styles['main-nav']}>
+      <div className={styles.navbar}>
         <Link href="/">
           <Image src={Logo} alt="logo" height="60" />
         </Link>
@@ -81,18 +58,19 @@ const Navbar = () => {
           sx={{ mr: 2 }}
           style={{ color: 'black' }}
         ></IconButton>
-                <a className="nav-item nav-btn">
-
-        <Link href="/" style={{textDecoration:'none'}} >
-        Products
-
-        </Link>
+        <a className={`${styles['nav-item']} ${styles['nav-btn']}`}>
+          <Link href="/" style={{ textDecoration: 'none' }}>
+            Products
+          </Link>
         </a>
 
-
-        <form action="" onSubmit={handlesubmit} className="form-container">
+        <form
+          action=""
+          onSubmit={handlesubmit}
+          className={styles['form-container']}
+        >
           <input type="text" placeholder="Search..." id="search" />
-          <SearchIcon className="search-icon" />
+          <SearchIcon className={styles['search-icon']} />
         </form>
 
         {usrs ? (
@@ -117,12 +95,18 @@ const Navbar = () => {
                 </Link>
               </Avatars>
             )}
-            <button className="nav-item nav-links" onClick={()=>logout()}>
+            <button
+              className={`${styles['nav-item']} ${styles['nav-links']}`}
+              onClick={() => logout()}
+            >
               Log out
             </button>
           </>
         ) : (
-          <Link href="/user/login" className="nav-item nav-links">
+          <Link
+            href="/user/login"
+            className={`${styles['nav-item']} ${styles['nav-links']}`}
+          >
             Log In
           </Link>
         )}
@@ -131,4 +115,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;
