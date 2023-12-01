@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar/Navbar'
-import './globals.css'
+import '../components/Home/App.css'
 import { Home } from '@/components'
 import { ReduxProvider } from '@/redux/Provider'
 import { ToastContainer } from 'react-toastify';
